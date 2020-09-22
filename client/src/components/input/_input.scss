@@ -1,0 +1,73 @@
+.input {
+  &__container {
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+    width: 100%;
+  }
+
+  &__input {
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: 1rem;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+
+    &--grey {
+      background-color: var(--color-grey);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    color: var(--color-white);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+}
+
+.radio {
+  display: grid;
+  grid-template-columns: min-content max-content;
+  grid-gap: 0.5em;
+  font-size: 1.8rem;
+  color: var(--color-white);
+  width: fit-content;
+
+  &__input {
+    display: flex;
+
+    input:checked + .radio__control {
+      background-color: currentColor;
+    }
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:focus + .radio__control {
+        box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
+      }
+    }
+  }
+
+  &__label {
+    line-height: 1;
+    transition: 180ms all ease-in-out;
+  }
+
+  &__control {
+    display: block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 0.1em solid currentColor;
+    transform: translateY(-0.05em);
+    cursor: pointer;
+  }
+}

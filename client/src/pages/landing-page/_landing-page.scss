@@ -1,0 +1,122 @@
+.landing-page {
+  position: relative;
+  &__container {
+    padding: 0 10rem;
+  }
+
+  .hero {
+    padding: 15rem 0rem 10rem 0rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+
+    &__cek-status {
+      label {
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: var(--color-dark-grey);
+        margin-bottom: 1rem;
+        display: block;
+      }
+    }
+
+    &__input-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    &__icon {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+
+    &__svg {
+      margin-right: -15rem;
+      width: 50vw;
+    }
+  }
+
+  .pengaduan {
+    text-align: center;
+    padding: 5rem 0;
+
+    .paragraph {
+      max-width: 79rem;
+      margin: 0 auto;
+      margin-bottom: 4rem;
+    }
+
+    &__form {
+      background-color: var(--color-green);
+      padding: 4rem;
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: 5fr 1fr;
+      grid-template-rows: repeat(6, 1fr);
+      border-radius: 2rem;
+      box-shadow: 0px 4px 7px rgba(10, 28, 100, 0.5);
+
+      .alamat {
+        grid-column: 1 / 2;
+        grid-row: 2 / 4;
+      }
+
+      .keluhan {
+        grid-column: 1 / 2;
+        grid-row: 4 / -1;
+      }
+
+      .btn {
+        grid-row: 6 / 7;
+      }
+    }
+  }
+
+  .sponsor {
+    background-color: var(--color-white);
+    box-shadow: 4px 4px 4px rgba(black, 0.25);
+    border-radius: 2rem;
+    padding: 3rem 4rem;
+    margin: 5rem 0;
+
+    &__organizations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+      gap: 4rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__organization {
+      display: grid;
+      grid-template-rows: 12rem 6rem;
+      gap: 2rem;
+      justify-items: center;
+      align-items: flex-start;
+      text-align: center;
+    }
+
+    &__logo {
+      align-self: center;
+
+      &--vokasi {
+        height: 12rem;
+        margin-left: -3rem;
+      }
+    }
+  }
+}
+
+.bg__landing {
+  background: url('../../assets/backgrounds/bg-landing.png');
+  position: absolute;
+  bottom: -15rem;
+  left: 0;
+  height: 150rem;
+  width: 70vw;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+}

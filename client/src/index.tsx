@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Switch>
+        <App />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
