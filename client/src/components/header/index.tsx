@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoTelukJambe } from '../../assets';
 
 const Header: React.FC = () => {
+  const { pathname } = useLocation();
+
   return (
     <nav className="navbar">
       <div className="navbar__container max-width-1200">
@@ -13,9 +15,12 @@ const Header: React.FC = () => {
         </div>
         <ul className="navbar__lists">
           <li className="navbar__item">
-            <NavLink className="navbar__link" activeClassName="active" to="/">
+            <Link
+              className={`navbar__link ${pathname === '/' ? 'active' : ''}`}
+              to="/"
+            >
               Beranda
-            </NavLink>
+            </Link>
           </li>
           <li className="navbar__item">
             <NavLink

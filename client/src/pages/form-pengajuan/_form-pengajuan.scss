@@ -1,0 +1,13 @@
+.pengajuan {
+  &__container {
+    padding: 15rem 10rem 10rem 10rem;
+  }
+
+  .form-pengajuan {
+    padding: 4rem 5rem;
+    background-color: var(--color-green);
+    border-radius: 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+}
