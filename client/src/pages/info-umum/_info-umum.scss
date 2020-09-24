@@ -1,0 +1,26 @@
+.info-umum {
+  padding-top: 8rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__map {
+    .mapboxgl-canvas {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__details {
+    padding: 10rem;
+    max-width: calc(136.6rem / 2);
+
+    .heading-primary {
+      color: var(--color-green);
+    }
+
+    .paragraph {
+      text-align: justify;
+    }
+  }
+}

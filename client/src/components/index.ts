@@ -4,5 +4,6 @@ import Button from './button';
 import Input from './input';
 import TextArea from './textarea';
 import Dropdown from './dropdown';
+import Footer from './footer';
 
-export { Header, Card, Button, Input, TextArea, Dropdown };
+export { Header, Card, Button, Input, TextArea, Dropdown, Footer };

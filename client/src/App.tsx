@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Berita, FormPengajuan, LandingPage } from './pages';
+import { Berita, FormPengajuan, InfoUmum, LandingPage } from './pages';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Route path="/" exact component={LandingPage} />
       <Route path="/form" exact component={FormPengajuan} />
       <Route path="/berita" exact component={Berita} />
+      <Route path="/informasi-umum" exact component={InfoUmum} />
     </div>
   );
 }
