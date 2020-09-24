@@ -1,0 +1,115 @@
+[
+  [
+    {
+      "type": "text",
+      "placeholder": "Nama Kepala Keluarga"
+    },
+    {
+      "type": "text",
+      "placeholder": "Email"
+    },
+    {
+      "type": "file",
+      "placeholder": "KTP Suami",
+      "id": "ktp-suami"
+    },
+    {
+      "type": "file",
+      "placeholder": "KTP Istri",
+      "id": "ktp-istri"
+    },
+    {
+      "type": "file",
+      "placeholder": "Surat Nikah",
+      "id": "surat-nikah"
+    },
+    {
+      "type": "file",
+      "placeholder": "Akta Kelahiran Anak (Opsional)",
+      "id": "akta-kelahiran"
+    }
+  ],
+  [
+    {
+      "type": "text",
+      "placeholder": "Nama Kepala Keluarga"
+    },
+    {
+      "type": "text",
+      "placeholder": "Email"
+    },
+    {
+      "type": "file",
+      "placeholder": "Surat Kelahiran",
+      "id": "surat-kelahiran"
+    },
+    {
+      "type": "file",
+      "placeholder": "KTP Suami",
+      "id": "ktp-suami"
+    },
+    {
+      "type": "file",
+      "placeholder": "KTP Istri",
+      "id": "ktp-istri"
+    },
+    {
+      "type": "file",
+      "placeholder": "Saksi Nikah 1",
+      "id": "saksi-nikah-1"
+    },
+    {
+      "type": "file",
+      "placeholder": "Saksi Nikah 2",
+      "id": "saksi-nikah-2"
+    },
+    {
+      "type": "file",
+      "placeholder": "Surat Nikah",
+      "id": "surat-nikah"
+    }
+  ],
+  [
+    {
+      "type": "text",
+      "placeholder": "Nama Kepala Keluarga"
+    },
+    {
+      "type": "text",
+      "placeholder": "Email"
+    },
+    {
+      "type": "dropdown",
+      "placeholder": "Pilih Kategori",
+      "options": [
+        "Tanah Bebas Sengketa",
+        "Meninggal Dunia",
+        "Kepemilikan Tanah",
+        "Pindah",
+        "Tidak Mampu",
+        "Hak Pergi Haji",
+        "Keringanan Pembiayaan Kendaraan Bermotor",
+        "Salah Nama"
+      ]
+    },
+    {
+      "type": "text",
+      "placeholder": "Nama Pengusul"
+    },
+    {
+      "type": "file",
+      "placeholder": "Surat Pernyataan Pribadi",
+      "id": "surat-pernyataan-pribadi"
+    },
+    {
+      "type": "file",
+      "placeholder": "Scan KTP Asli",
+      "id": "scan-ktp-asli"
+    },
+    {
+      "type": "file",
+      "placeholder": "Lampiran Pendukung (Opsional)",
+      "id": "lampiran-pendukung"
+    }
+  ]
+]

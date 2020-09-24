@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { Button, Dropdown, Header, Input } from '../../components';
 import Footer from '../../components/footer';
+import FormPengajuanData from '../../json/form-pengajuan.json';
 
 const FormPengajuan = () => {
-  const [ktpSuami, setKtpSuami] = useState<FileList | undefined>(undefined);
-  const handleChange = (value: string) => {};
+  const [indexFormPengajuan, setIndexFormPengajuan] = useState<number>(-1);
 
-  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files) {
-      setKtpSuami(files);
-    }
+  const handleChange = (value: string) => {
+    if (value === 'KK (Kartu Keluarga)') setIndexFormPengajuan(0);
+    else if (value === 'Akta Kelahiran') setIndexFormPengajuan(1);
+    else if (value === 'Surat Keterangan Desa') setIndexFormPengajuan(2);
+    else setIndexFormPengajuan(-1);
   };
 
   return (
     <>
       <Header />
       <main className="pengajuan">
+        <div className="bg-pengajuan" />
         <div className="max-width-1200 pengajuan__container">
           <div className="pengajuan__heading">
-            <h1 className="heading-tertiary">SURAT PENGAJUAN</h1>
+            <h1 className="heading-tertiary mb-4">SURAT PENGAJUAN</h1>
           </div>
           <form className="form-pengajuan">
             <Dropdown
@@ -31,25 +32,27 @@ const FormPengajuan = () => {
                 'Surat Keterangan Desa',
               ]}
             />
-            <Input type="text" placeholder="Nama Kepala Keluarga" />
-            <Input type="text" placeholder="Nomer Telepon" />
-            <Input
-              fileName={ktpSuami}
-              onChange={handleChangeFile}
-              onCancel={() => setKtpSuami(undefined)}
-              type="file"
-              id="ktp-suami"
-              placeholder="KTP Suami"
-            />
-            <Input type="file" id="ktp-istri" placeholder="KTP Istri" />
-            <Input type="file" id="surat-nikah" placeholder="Surat Nikah" />
-            <Input
-              type="file"
-              id="akta"
-              placeholder="Akta Kelahiran Anak (opsional)"
-            />
+            {indexFormPengajuan > -1
+              ? FormPengajuanData[indexFormPengajuan].map(
+                  ({ type, options, ...otherProps }, i) => {
+                    if (type === 'dropdown' && options) {
+                      return <Dropdown {...otherProps} options={options} />;
+                    }
+
+                    return (
+                      <Input
+                        key={`pengajuan-form-${i}`}
+                        type={type as any}
+                        {...otherProps}
+                      />
+                    );
+                  }
+                )
+              : null}
             <div className="form-pengajuan__button-container">
-              <Button>Submit</Button>
+              <Button style={{ minWidth: '20rem', marginTop: '2rem' }}>
+                Submit
+              </Button>
             </div>
           </form>
         </div>

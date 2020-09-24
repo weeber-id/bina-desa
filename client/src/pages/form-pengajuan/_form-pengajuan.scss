@@ -1,6 +1,7 @@
 .pengajuan {
   &__container {
     padding: 15rem 10rem 10rem 10rem;
+    min-height: calc(100vh - 15rem);
   }
 
   .form-pengajuan {
@@ -10,4 +11,16 @@
     display: grid;
     gap: 1.5rem;
   }
+}
+
+.bg-pengajuan {
+  background: url('../../assets/backgrounds/bg-form-pengajuan.png');
+  background-position: bottom right;
+  background-size: cover;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 90%;
+  width: 60%;
+  z-index: -1;
 }

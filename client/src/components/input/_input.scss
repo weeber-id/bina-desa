@@ -21,6 +21,10 @@
     &:focus {
       outline: none;
     }
+
+    &::placeholder {
+      color: var(--color-grey-2);
+    }
   }
 
   &__label {

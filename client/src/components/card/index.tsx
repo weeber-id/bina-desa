@@ -1,38 +1,14 @@
 import React from 'react';
-import Button from '../button';
-import CardWork from './card-work';
 
 export interface Card extends React.HTMLAttributes<HTMLDivElement> {
-  type?: 'philosophy' | 'service' | 'work';
-  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>> & {
-    title?: string | undefined;
-  };
   title?: string;
   description?: string;
   img?: string;
   alt?: string;
-  platform?: string;
+  date?: string;
 }
 
-const Card: React.FC<Card> = ({
-  type,
-  description,
-  title,
-  img,
-  alt,
-  platform,
-}) => {
-  if (type === 'work') {
-    return (
-      <CardWork
-        title={title}
-        description={description}
-        img={img}
-        platform={platform}
-      />
-    );
-  }
-
+const Card: React.FC<Card> = ({ description, title, img, alt, date }) => {
   return (
     <div className="card">
       <div className="card__img-container">
@@ -40,10 +16,8 @@ const Card: React.FC<Card> = ({
       </div>
       <div className="card__details">
         <h3 className="heading-tertiary">{title}</h3>
+        <h4 className="card__date">{date}</h4>
         <p className="paragraph">{description}</p>
-        <Button color="green" variant="outlined">
-          Contact Us
-        </Button>
       </div>
     </div>
   );

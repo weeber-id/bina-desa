@@ -1,0 +1,41 @@
+.berita {
+  position: relative;
+
+  &__container {
+    padding: 15rem 10rem 0rem 10rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 6rem 3rem;
+    padding-bottom: 18rem;
+  }
+}
+
+.bg-berita-1 {
+  background: url('../../assets/backgrounds/bg-berita-1.png');
+  left: 0;
+  top: 0;
+  height: 70vh;
+  width: 60%;
+  z-index: -1;
+  background-position: right bottom;
+}
+
+.bg-berita-2 {
+  background: url('../../assets/icons/ic-hero-landing.svg');
+  background-position: top left;
+  right: 0;
+  bottom: -5rem;
+  height: 80rem;
+  width: 50%;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.bg-berita-1,
+.bg-berita-2 {
+  background-size: cover;
+  position: absolute;
+}

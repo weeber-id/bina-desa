@@ -3,8 +3,8 @@ import { IconDropdownArrow } from '../../assets';
 import useOutside from '../../hooks/use-outside';
 
 interface DropdownProps extends React.HTMLProps<HTMLDivElement> {
-  options: string[];
-  onChangeOptions(value: string): void;
+  options?: string[];
+  onChangeOptions?(value: string): void;
   placeholder?: string;
 }
 
@@ -22,7 +22,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   });
 
   const handleClick = (val: string, i: number) => {
-    onChangeOptions(val);
+    if (onChangeOptions) onChangeOptions(val);
     setActiveIndex(i);
     setHidden(true);
   };
@@ -31,25 +31,26 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div ref={dropdownRef} className="dropdown">
       <div onClick={() => setHidden(!hidden)} className="dropdown__select">
         <div className={`dropdown__text ${activeIndex > -1 ? 'active' : ''}`}>
-          {activeIndex > -1 ? options[activeIndex] : placeholder}
+          {activeIndex > -1 && options ? options[activeIndex] : placeholder}
         </div>
         <IconDropdownArrow />
       </div>
       {!hidden && (
         <div className="dropdown__options">
-          {options.map((option, i) => {
-            return (
-              <div
-                key={`${option}-${i}`}
-                onClick={(e) => handleClick(options[i], i)}
-                className={`dropdown__option ${
-                  activeIndex === i ? 'active' : ''
-                }`}
-              >
-                {option}
-              </div>
-            );
-          })}
+          {options &&
+            options.map((option, i) => {
+              return (
+                <div
+                  key={`${option}-${i}`}
+                  onClick={(e) => handleClick(options[i], i)}
+                  className={`dropdown__option ${
+                    activeIndex === i ? 'active' : ''
+                  }`}
+                >
+                  {option}
+                </div>
+              );
+            })}
         </div>
       )}
     </div>
