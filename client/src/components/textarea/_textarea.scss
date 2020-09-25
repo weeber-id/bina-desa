@@ -1,4 +1,6 @@
 .textarea {
+  width: 100%;
+
   &__textarea {
     border: none;
     border-radius: 1rem;
@@ -10,6 +12,10 @@
     background-color: var(--color-white);
     color: var(--color-black);
     font-family: 'Montserrat', 'Segoe UI', sans-serif;
+
+    @media only screen and (max-width: 31.25em) {
+      font-size: 1.4rem;
+    }
 
     &:focus {
       outline: none;

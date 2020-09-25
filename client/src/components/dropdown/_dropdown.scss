@@ -30,9 +30,9 @@
   }
 
   &__select {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: 1fr 1.4rem;
     padding: 1rem 2rem;
   }
 
@@ -40,6 +40,14 @@
     color: var(--color-grey-2);
     font-size: 1.8rem;
     line-height: 1.12;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @media only screen and (max-width: 31.25em) {
+      font-size: 1.4rem;
+    }
 
     &.active {
       color: var(--color-black);

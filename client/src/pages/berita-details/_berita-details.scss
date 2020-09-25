@@ -1,0 +1,27 @@
+.berita-details {
+  &__container {
+    padding: 20rem 10rem 10rem 10rem;
+
+    @media only screen and (max-width: 56.25em) {
+      padding: 10rem 5rem;
+    }
+
+    @media only screen and (max-width: 25em) {
+      padding: 10rem 3rem;
+    }
+
+    .heading-primary {
+      color: var(--color-green);
+    }
+  }
+
+  &__date {
+    color: var(--color-grey-2);
+  }
+
+  &__more {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 4rem;
+  }
+}

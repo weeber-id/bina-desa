@@ -19,7 +19,8 @@ const InfoUmum = () => {
             className="info-umum__map"
             center={[107.3135685, -6.3472259]}
             zoom={[14.44]}
-            containerStyle={{ height: '100%', width: '50vw' }}
+            containerStyle={{ height: '100%', width: '100%' }}
+            // eslint-disable-next-line
             style="mapbox://styles/azharalifauzi/ckfgv2wbg0mxr19mh7x1ns07y"
           ></Map>
         </div>

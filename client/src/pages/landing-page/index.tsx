@@ -18,8 +18,9 @@ const LandingPage = () => {
           <section className="hero">
             <div className="hero__details">
               <h1 className="heading-primary mb-3">
-                Selamat Datang di <br />{' '}
-                <span className="co-green"> Desa Teluk Jambe</span>
+                Selamat Datang di
+                <br />
+                <span className="co-green">Desa Teluk Jambe</span>
               </h1>
               <p className="paragraph mb-3">
                 Website ini merupakan tempat pelayanan warga Desa Telukjambe
@@ -28,7 +29,7 @@ const LandingPage = () => {
                 terbaru mengenai Desa Telukjambe.
               </p>
               <div className="hero__cek-status">
-                <label>Cek Status</label>
+                <label>Cek Status Pengajuan Anda</label>
                 <div className="hero__input-container mb-3">
                   <Input
                     placeholder="masukkan kode unik"
@@ -48,15 +49,15 @@ const LandingPage = () => {
             </div>
           </section>
           <section className="pengaduan">
+            <h2 className="heading-secondary mb-3">Kanal Pengaduan</h2>
             <p className="paragraph">
               Isian di bawah ini merupakan tempat bagi warga Desa Telukjambe,
               untuk menyampaikan keluhan-keluhan terkait keadaan Desa
               Telukjambe. Kami akan dengan senang hati mendengarkan dan
               menangani keluhan mengenai desa dari anda.
             </p>
-            <h2 className="heading-secondary mb-3">Kanal Pengaduan</h2>
             <form className="pengaduan__form">
-              <Input type="text" placeholder="Nama" />
+              <Input className="nama" type="text" placeholder="Nama" />
               <TextArea className="alamat" placeholder="Alamat" />
               <Input className="rt" type="text" placeholder="RT" />
               <Input className="rw" type="text" placeholder="RW" />

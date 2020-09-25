@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoTelukJambe } from '../../assets';
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
+  const [collapse, setCollapse] = useState<boolean>(true);
 
   return (
     <nav className="navbar">
@@ -13,6 +14,39 @@ const Header: React.FC = () => {
             <LogoTelukJambe />
           </Link>
         </div>
+        <div className={`navbar__brand-mobile ${!collapse ? 'collapse' : ''}`}>
+          <Link to="/">
+            <LogoTelukJambe />
+          </Link>
+        </div>
+        <div
+          onClick={() => setCollapse(!collapse)}
+          className="navbar__hamburger-container"
+        >
+          <div className={`navbar__hamburger ${!collapse ? 'collapse' : ''}`} />
+        </div>
+        <ul className={`navbar__lists-mobile ${!collapse ? 'collapse' : ''}`}>
+          <li className="navbar__item-mobile">
+            <Link to="/" className="navbar__link-mobile">
+              Beranda
+            </Link>
+          </li>
+          <li className="navbar__item-mobile">
+            <Link to="/form" className="navbar__link-mobile">
+              Daftar Pengajuan
+            </Link>
+          </li>
+          <li className="navbar__item-mobile">
+            <Link to="/informasi-umum" className="navbar__link-mobile">
+              Informasi Umum
+            </Link>
+          </li>
+          <li className="navbar__item-mobile">
+            <Link to="/berita" className="navbar__link-mobile">
+              Berita
+            </Link>
+          </li>
+        </ul>
         <ul className="navbar__lists">
           <li className="navbar__item">
             <Link

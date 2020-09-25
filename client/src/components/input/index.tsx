@@ -78,7 +78,6 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className={inputTextContainerClassName.join(' ')}>
-      {label && <label className="input__label">{label}</label>}
       <input
         {...otherProps}
         className={inputClassName.join(' ')}

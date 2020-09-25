@@ -2,6 +2,19 @@
   &__container {
     padding: 15rem 10rem 10rem 10rem;
     min-height: calc(100vh - 15rem);
+
+    @media only screen and (max-width: 56.25em) {
+      padding: 10rem 5rem;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      padding: 10rem 1rem;
+
+      .heading-tertiary {
+        padding: 0 3rem;
+        margin-bottom: 2rem;
+      }
+    }
   }
 
   .form-pengajuan {
@@ -10,6 +23,15 @@
     border-radius: 2.5rem;
     display: grid;
     gap: 1.5rem;
+
+    @media only screen and (max-width: 31.25em) {
+      padding: 2rem;
+      border-radius: 1rem;
+
+      .btn {
+        width: 100%;
+      }
+    }
   }
 }
 

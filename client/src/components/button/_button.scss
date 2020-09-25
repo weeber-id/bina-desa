@@ -9,6 +9,10 @@
   border-radius: 1rem;
   white-space: nowrap;
 
+  @media only screen and (max-width: 31.25em) {
+    font-size: 1.6rem;
+  }
+
   &:hover {
     background-color: darken(#f9cd35, 10%);
   }
