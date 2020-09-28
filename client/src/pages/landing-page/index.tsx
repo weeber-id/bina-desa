@@ -1,17 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   IconHeroLanding,
   LogoBemVokasi,
   LogoBinaDesa,
   LogoWeeber,
 } from '../../assets';
-import { Button, Header, Input, TextArea } from '../../components';
+import {
+  Button,
+  Header,
+  Input,
+  LoadingMessage,
+  TextArea,
+} from '../../components';
 import Footer from '../../components/footer';
+import { fetchRequest } from '../../hooks/use-request';
+import { urlServer } from '../../utils/urlServer';
+
+type FormPengaduan = {
+  name: string;
+  rt: string;
+  rw: string;
+  address: string;
+  complaint: string;
+};
 
 const LandingPage = () => {
+  const [formPengaduan, setFormPengaduan] = useState<FormPengaduan>({
+    address: '',
+    complaint: '',
+    name: '',
+    rt: '',
+    rw: '',
+  });
+  const [loading, setLoading] = useState<boolean>(false);
+  const history = useHistory();
+
+  const handleChangeFormPengaduan = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    const { value, name } = e.target;
+    setFormPengaduan({
+      ...formPengaduan,
+      [name]: value,
+    });
+  };
+
+  const handleSubmitFormPengaduan = async (
+    e:
+      | React.MouseEvent<HTMLButtonElement | HTMLInputElement>
+      | React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    setLoading(true);
+    const { error, isLoading } = await fetchRequest(
+      'post',
+      `${urlServer}/complaint`,
+      JSON.stringify(formPengaduan)
+    );
+    setLoading(isLoading);
+    setFormPengaduan({
+      address: '',
+      complaint: '',
+      name: '',
+      rt: '',
+      rw: '',
+    });
+    if (error) {
+      history.push('/fallback?type=fail');
+    } else {
+      history.push('/fallback');
+    }
+  };
+
   return (
     <>
       <Header />
+      {loading && <LoadingMessage />}
       <main className="landing-page">
         <div className="bg__landing" />
         <div className="max-width-1200 landing-page__container">
@@ -56,13 +121,49 @@ const LandingPage = () => {
               Telukjambe. Kami akan dengan senang hati mendengarkan dan
               menangani keluhan mengenai desa dari anda.
             </p>
-            <form className="pengaduan__form">
-              <Input className="nama" type="text" placeholder="Nama" />
-              <TextArea className="alamat" placeholder="Alamat" />
-              <Input className="rt" type="text" placeholder="RT" />
-              <Input className="rw" type="text" placeholder="RW" />
-              <TextArea className="keluhan" placeholder="Tuliskan Keluhanmu" />
-              <Button>Submit</Button>
+            <form
+              onSubmit={handleSubmitFormPengaduan}
+              className="pengaduan__form"
+            >
+              <Input
+                name="name"
+                className="nama"
+                type="text"
+                placeholder="Nama"
+                onChange={handleChangeFormPengaduan}
+                required
+              />
+              <TextArea
+                name="address"
+                className="alamat"
+                placeholder="Alamat"
+                onChange={handleChangeFormPengaduan}
+                required
+              />
+              <Input
+                onChange={handleChangeFormPengaduan}
+                name="rt"
+                className="rt"
+                type="text"
+                placeholder="RT"
+                required
+              />
+              <Input
+                onChange={handleChangeFormPengaduan}
+                name="rw"
+                className="rw"
+                type="text"
+                placeholder="RW"
+                required
+              />
+              <TextArea
+                name="complaint"
+                className="keluhan"
+                placeholder="Tuliskan Keluhanmu"
+                onChange={handleChangeFormPengaduan}
+                required
+              />
+              <Button type="submit">Submit</Button>
             </form>
           </section>
           <section className="sponsor">
@@ -83,7 +184,7 @@ const LandingPage = () => {
                   className="sponsor__logo sponsor__logo--vokasi"
                 />
                 <p className="sponsor__name">
-                  Departemen Sosial Masyarkat dan Lingkungan BEM Voaksi UI 2020
+                  Departemen Sosial Masyarakat dan Lingkungan BEM Voaksi UI 2020
                 </p>
               </div>
               <div className="sponsor__organization">

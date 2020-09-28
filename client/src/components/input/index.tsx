@@ -4,7 +4,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   type: 'radio' | 'file' | 'text' | 'password';
   bgColor?: 'white' | 'grey';
-  fileName?: FileList;
+  fileName?: FileList[0];
   onCancel?(): void;
 }
 
@@ -44,19 +44,16 @@ const Input: React.FC<InputProps> = ({
   if (type === 'file') {
     return (
       <div className={inputFileClassName.join(' ')}>
-        <span
-          className={`input-file__filename ${
-            fileName && fileName.length > 0 ? 'active' : ''
-          }`}
-        >
-          {fileName && fileName.length > 0 ? fileName[0].name : placeholder}
+        <span className={`input-file__filename ${fileName ? 'active' : ''}`}>
+          {fileName ? fileName.name : placeholder}
         </span>
         <input
+          {...otherProps}
           value={!fileName ? undefined : ''}
           accept="image/*,.pdf"
-          {...otherProps}
           id={id}
           type="file"
+          name={name}
         />
         {!fileName ? (
           <label className="input-file__btn" htmlFor={id}>

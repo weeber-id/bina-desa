@@ -2,81 +2,97 @@
   [
     {
       "type": "text",
-      "placeholder": "Nama Kepala Keluarga"
+      "placeholder": "Nama Kepala Keluarga",
+      "name": "nama_kepala_keluarga"
     },
     {
       "type": "text",
-      "placeholder": "Email"
+      "placeholder": "Email",
+      "name": "email"
     },
     {
       "type": "file",
       "placeholder": "KTP Suami",
-      "id": "ktp-suami"
+      "id": "ktp-suami",
+      "name": "ktp_suami"
     },
     {
       "type": "file",
       "placeholder": "KTP Istri",
-      "id": "ktp-istri"
+      "id": "ktp-istri",
+      "name": "ktp_istri"
     },
     {
       "type": "file",
       "placeholder": "Surat Nikah",
-      "id": "surat-nikah"
+      "id": "surat-nikah",
+      "name": "surat_nikah"
     },
     {
       "type": "file",
       "placeholder": "Akta Kelahiran Anak (Opsional)",
-      "id": "akta-kelahiran"
+      "id": "akta-kelahiran",
+      "name": "akta_kelahiran"
     }
   ],
   [
     {
       "type": "text",
-      "placeholder": "Nama Kepala Keluarga"
+      "placeholder": "Nama Kepala Keluarga",
+      "name": "nama_kepala_keluarga"
     },
     {
       "type": "text",
-      "placeholder": "Email"
+      "placeholder": "Email",
+      "name": "email"
     },
     {
       "type": "file",
       "placeholder": "Surat Kelahiran",
-      "id": "surat-kelahiran"
+      "id": "surat-kelahiran",
+      "name": "surat_kelahiran"
     },
     {
       "type": "file",
       "placeholder": "KTP Suami",
-      "id": "ktp-suami"
+      "id": "ktp-suami",
+      "name": "ktp_suami"
     },
     {
       "type": "file",
       "placeholder": "KTP Istri",
-      "id": "ktp-istri"
+      "id": "ktp-istri",
+      "name": "ktp_istri"
     },
     {
       "type": "file",
       "placeholder": "Saksi Nikah 1",
-      "id": "saksi-nikah-1"
+      "id": "saksi-nikah-1",
+      "name": "saksi_nikah_satu"
     },
     {
       "type": "file",
       "placeholder": "Saksi Nikah 2",
-      "id": "saksi-nikah-2"
+      "id": "saksi-nikah-2",
+      "name": "saksi_nikah_dua"
     },
     {
       "type": "file",
       "placeholder": "Surat Nikah",
-      "id": "surat-nikah"
+      "id": "surat-nikah",
+      "name": "surat_nikah"
     }
   ],
   [
     {
       "type": "text",
-      "placeholder": "Nama Kepala Keluarga"
+      "placeholder": "Nama Kepala Keluarga",
+      "name": "nama_kepala_keluarga"
     },
     {
       "type": "text",
-      "placeholder": "Email"
+      "placeholder": "Email",
+      "name": "email"
     },
     {
       "type": "dropdown",
@@ -90,26 +106,31 @@
         "Hak Pergi Haji",
         "Keringanan Pembiayaan Kendaraan Bermotor",
         "Salah Nama"
-      ]
+      ],
+      "name": "kategori"
     },
     {
       "type": "text",
-      "placeholder": "Nama Pengusul"
+      "placeholder": "Nama Pengusul",
+      "name": "nama_pengusul"
     },
     {
       "type": "file",
       "placeholder": "Surat Pernyataan Pribadi",
-      "id": "surat-pernyataan-pribadi"
+      "id": "surat-pernyataan-pribadi",
+      "name": "surat_pernyataan_pribadi"
     },
     {
       "type": "file",
       "placeholder": "Scan KTP Asli",
-      "id": "scan-ktp-asli"
+      "id": "scan-ktp-asli",
+      "name": "scan_ktp_asli"
     },
     {
       "type": "file",
       "placeholder": "Lampiran Pendukung (Opsional)",
-      "id": "lampiran-pendukung"
+      "id": "lampiran-pendukung",
+      "name": "lampiran_pendukung"
     }
   ]
 ]

@@ -5,5 +5,15 @@ import Input from './input';
 import TextArea from './textarea';
 import Dropdown from './dropdown';
 import Footer from './footer';
+import LoadingMessage from './loading-message';
 
-export { Header, Card, Button, Input, TextArea, Dropdown, Footer };
+export {
+  Header,
+  Card,
+  Button,
+  Input,
+  TextArea,
+  Dropdown,
+  Footer,
+  LoadingMessage,
+};

@@ -1,8 +1,10 @@
 import React from 'react';
 
-interface Button extends React.HTMLAttributes<HTMLButtonElement> {
+interface Button
+  extends React.HTMLAttributes<HTMLButtonElement | HTMLInputElement> {
   variant?: 'filled' | 'outlined';
   color?: 'yellow' | 'white' | 'green' | 'grey';
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<Button> = ({
@@ -10,6 +12,7 @@ const Button: React.FC<Button> = ({
   children,
   variant,
   className,
+  type,
   ...otherProps
 }) => {
   const btnClassName = ['btn'];
@@ -19,8 +22,14 @@ const Button: React.FC<Button> = ({
   if (color === 'green') btnClassName.push('btn--green');
   if (color === 'grey') btnClassName.push('btn--grey');
 
+  if (type === 'submit') {
+    return (
+      <input type="submit" className={btnClassName.join(' ')} {...otherProps} />
+    );
+  }
+
   return (
-    <button {...otherProps} className={btnClassName.join(' ')}>
+    <button {...otherProps} type={type} className={btnClassName.join(' ')}>
       {children}
     </button>
   );
