@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, useLocation } from 'react-router-dom';
 import {
   Berita,
   FallbackPage,
@@ -10,6 +10,11 @@ import {
 import BeritaDetails from './pages/berita-details';
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ behavior: 'smooth', top: 0, left: 0 });
+  }, [pathname]);
   return (
     <div className="App">
       <Route path="/" exact component={LandingPage} />

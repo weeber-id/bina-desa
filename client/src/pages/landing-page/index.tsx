@@ -33,6 +33,7 @@ const LandingPage = () => {
     rt: '',
     rw: '',
   });
+  const [statusPengajuan, setStatusPengajuan] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const history = useHistory();
 
@@ -73,6 +74,36 @@ const LandingPage = () => {
     }
   };
 
+  const handleSubmitCekStatusPengajuan = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    setLoading(true);
+    const { error, isLoading, res } = await fetchRequest(
+      'get',
+      `${urlServer}/submission/find?unique_code=${statusPengajuan}`
+    );
+    let key: string[] = [];
+    // eslint-disable-next-line
+    Object.keys(res.data.data).map((val) => {
+      key.push(val);
+    });
+    setLoading(isLoading);
+    const { unique_code, status_code } = res.data.data[key[0]];
+
+    if (error) {
+      history.push('/fallback?type=fail');
+    } else {
+      history.push(
+        `/fallback?type=status-pengajuan&unique_code=${unique_code}&status_code=${status_code}`,
+        {
+          uniqueCode: unique_code,
+          statusCode: status_code,
+        }
+      );
+    }
+  };
+
   return (
     <>
       <Header />
@@ -94,15 +125,21 @@ const LandingPage = () => {
                 terbaru mengenai Desa Telukjambe.
               </p>
               <div className="hero__cek-status">
-                <label>Cek Status Pengajuan Anda</label>
-                <div className="hero__input-container mb-3">
-                  <Input
-                    placeholder="masukkan kode unik"
-                    type="text"
-                    bgColor="grey"
-                  />
-                  <Button color="grey">Cek Status</Button>
-                </div>
+                <form onSubmit={handleSubmitCekStatusPengajuan}>
+                  <label>Cek Status Pengajuan Anda</label>
+                  <div className="hero__input-container mb-3">
+                    <Input
+                      placeholder="masukkan kode unik"
+                      type="text"
+                      bgColor="grey"
+                      value={statusPengajuan}
+                      onChange={(e) => setStatusPengajuan(e.target.value)}
+                    />
+                    <Button type="submit" color="grey">
+                      Cek Status
+                    </Button>
+                  </div>
+                </form>
                 <p className="paragraph mb-2">
                   Belum terdaftar? Silahkan isi form
                 </p>
