@@ -11,30 +11,35 @@ export const fetchRequest = async (
   let isLoading = true;
   let error;
   let res;
+  let statusCode;
 
   try {
     if (method === 'get') {
       const response = await Axios.get(url);
       res = response;
       isLoading = false;
+      statusCode = res.status;
     }
 
     if (method === 'post') {
       const response = await Axios.post(url, data, config);
       res = response;
       isLoading = false;
+      statusCode = res.status;
     }
 
     if (method === 'delete') {
       const response = await Axios.delete(url, config);
       res = response;
       isLoading = false;
+      statusCode = res.status;
     }
 
     if (method === 'put') {
       const response = await Axios.put(url, data, config);
       res = response;
       isLoading = false;
+      statusCode = res.status;
     }
 
     if (method === 'formdata') {
@@ -51,5 +56,5 @@ export const fetchRequest = async (
     isLoading = false;
   }
 
-  return { isLoading, error, res };
+  return { isLoading, error, res, statusCode };
 };

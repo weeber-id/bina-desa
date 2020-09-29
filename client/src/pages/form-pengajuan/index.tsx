@@ -22,6 +22,18 @@ type KKState = {
   akta_kelahiran?: FileList[0];
 };
 
+type AktaKelahiranState = {
+  [key: string]: any;
+  email?: string;
+  nama_kepala_keluarga?: string;
+  ktp_suami?: FileList[0];
+  ktp_istri?: FileList[0];
+  ktp_saksi_1?: FileList[0];
+  ktp_saksi_2?: FileList[0];
+  surat_nikah?: FileList[0];
+  surat_kelahiran?: FileList[0];
+};
+
 const FormPengajuan = () => {
   const [indexFormPengajuan, setIndexFormPengajuan] = useState<number>(-1);
   const [KKState, setKKState] = useState<KKState>({
@@ -31,6 +43,18 @@ const FormPengajuan = () => {
     ktp_istri: undefined,
     surat_nikah: undefined,
     akta_kelahiran: undefined,
+  });
+  const [AktaKelahiranState, setAktaKelahiranState] = useState<
+    AktaKelahiranState
+  >({
+    email: '',
+    nama_kepala_keluarga: '',
+    ktp_suami: undefined,
+    ktp_istri: undefined,
+    ktp_saksi_1: undefined,
+    ktp_saksi_2: undefined,
+    surat_kelahiran: undefined,
+    surat_nikah: undefined,
   });
   const [loading, setLoading] = useState<boolean>(false);
   const history = useHistory();
@@ -50,44 +74,84 @@ const FormPengajuan = () => {
       files &&
       files?.length > 0
     ) {
-      setKKState({
-        ...KKState,
-        [name]: files[0],
-      });
+      if (indexFormPengajuan === 0) {
+        setKKState({
+          ...KKState,
+          [name]: files[0],
+        });
+      } else if (indexFormPengajuan === 1) {
+        setAktaKelahiranState({
+          ...AktaKelahiranState,
+          [name]: files[0],
+        });
+      }
     } else {
-      setKKState({
-        ...KKState,
-        [name]: value,
-      });
+      if (indexFormPengajuan === 0) {
+        setKKState({
+          ...KKState,
+          [name]: value,
+        });
+      } else if (indexFormPengajuan === 1) {
+        setAktaKelahiranState({
+          ...AktaKelahiranState,
+          [name]: value,
+        });
+      }
     }
   };
 
   const handleCancel = (name: string) => {
-    setKKState({
-      ...KKState,
-      [name]: undefined,
-    });
+    if (indexFormPengajuan === 0) {
+      setKKState({
+        ...KKState,
+        [name]: undefined,
+      });
+    } else if (indexFormPengajuan === 1) {
+      setAktaKelahiranState({
+        ...AktaKelahiranState,
+        [name]: undefined,
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     const formdata = new FormData();
-    // eslint-disable-next-line
-    Object.keys(KKState).map((key: string) => {
-      formdata.append(key, KKState[key]);
-    });
+    let ObjMapped;
+    if (indexFormPengajuan === 0) ObjMapped = KKState;
+    else if (indexFormPengajuan === 1) ObjMapped = AktaKelahiranState;
+    ObjMapped &&
+      // eslint-disable-next-line
+      Object.keys(ObjMapped).map((key: string) => {
+        if (indexFormPengajuan === 0) {
+          formdata.append(key, KKState[key]);
+        } else if (indexFormPengajuan === 1) {
+          formdata.append(key, AktaKelahiranState[key]);
+        }
+      });
+    let urlRequest = '';
+    if (indexFormPengajuan === 0) {
+      urlRequest = `${urlServer}/submission/kartu-keluarga`;
+    } else if (indexFormPengajuan === 1) {
+      urlRequest = `${urlServer}/submission/akta-kelahiran`;
+    }
     const { error, res, isLoading } = await fetchRequest(
       'formdata',
-      `${urlServer}/submission/kartu-keluarga`,
+      urlRequest,
       formdata
     );
     setLoading(isLoading);
-    if (error) history.push('/fallback?type=fail');
-    if (res)
+
+    if (error) {
+      history.push('/fallback?type=fail');
+    } else if (/required/gi.test(res)) {
+      history.push('/fallback?type=bad-request');
+    } else {
       history.push('/fallback?type=form-pengajuan', {
         uniqueCode: res.data.unique_code,
       });
+    }
   };
 
   return (
@@ -112,9 +176,15 @@ const FormPengajuan = () => {
             />
             {indexFormPengajuan > -1
               ? FormPengajuanData[indexFormPengajuan].map(
-                  ({ type, options, name, id, ...otherProps }, i) => {
+                  ({ type, options, name, id, required, ...otherProps }, i) => {
                     if (type === 'dropdown' && options) {
                       return <Dropdown {...otherProps} options={options} />;
+                    }
+                    let value;
+                    if (indexFormPengajuan === 0) {
+                      value = KKState[name];
+                    } else if (indexFormPengajuan === 1) {
+                      value = AktaKelahiranState[name];
                     }
 
                     return (
@@ -124,10 +194,12 @@ const FormPengajuan = () => {
                         type={type as any}
                         name={name}
                         onChange={handleChangeForm}
+                        required={required}
+                        indexPengajuanForm={indexFormPengajuan}
                         // @ts-ignore
-                        value={KKState[name]}
+                        value={value}
                         // @ts-ignore
-                        fileName={KKState[name]}
+                        fileName={value}
                         onCancel={() => handleCancel(name)}
                         {...otherProps}
                       />

@@ -38,6 +38,12 @@ const FallbackPage: React.FC = () => {
       'Mohon maaf, terjadi kesalahan. Silahkan mencoba lagi. Terima kasih.';
   }
 
+  if (query === 'bad-request') {
+    title = 'Bad Request';
+    details =
+      'Mohon maaf, tolong isi form sesuai dengan ketentuan. Terima kasih.';
+  }
+
   if (query === 'form-pengajuan')
     details = `<span class="mb-1" style="font-size: 2rem; display: block;">Kode unik anda adalah <strong>${state?.uniqueCode}</strong></span> Kode unik ini dapat anda gunakan untuk mengecek status pengajuan di halaman <a style="color: var(--color-black); font-weight: 700;" href='/' >beranda</a>. Jika sudah selesai, maka anda dapat mengambilnya di kantor Desa Telukjambe serta membayar biaya sebesar <strong>Rp. 20.000;</strong>`;
 

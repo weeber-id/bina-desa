@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -6,6 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   bgColor?: 'white' | 'grey';
   fileName?: FileList[0];
   onCancel?(): void;
+  indexPengajuanForm?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,11 +21,24 @@ const Input: React.FC<InputProps> = ({
   id,
   fileName,
   onCancel,
+  indexPengajuanForm,
   ...otherProps
 }) => {
   const inputClassName = ['input__input'];
   const inputTextContainerClassName = ['input__container'];
-  const inputFileClassName = ['input-file__container'];
+  const [inputFileClassName, setInputFileClassName] = useState<string[]>([
+    'input-file__container',
+  ]);
+
+  useEffect(() => {
+    if (fileName) {
+      setInputFileClassName(['input-file__container']);
+    }
+
+    if (indexPengajuanForm) {
+      setInputFileClassName(['input-file__container']);
+    }
+  }, [fileName, indexPengajuanForm]);
 
   if (bgColor === 'grey') inputClassName.push('input__input--grey');
   if (className && type === 'text') inputTextContainerClassName.push(className);
@@ -48,6 +62,12 @@ const Input: React.FC<InputProps> = ({
           {fileName ? fileName.name : placeholder}
         </span>
         <input
+          required={required}
+          onInvalid={() => {
+            if (!fileName) {
+              setInputFileClassName([...inputFileClassName, 'required']);
+            }
+          }}
           {...otherProps}
           value={!fileName ? undefined : ''}
           accept="image/*,.pdf"

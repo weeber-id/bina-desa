@@ -88,6 +88,11 @@
     align-items: center;
     justify-content: space-between;
 
+    &.required {
+      border: 1px solid var(--color-red);
+      box-shadow: 0 0 5px rgba(#f3285b, 0.9);
+    }
+
     input[type='file'] {
       position: absolute;
       height: 0;
