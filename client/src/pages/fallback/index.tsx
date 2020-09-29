@@ -11,6 +11,7 @@ type FormPengajuanFallbackState = {
 
 const FallbackPage: React.FC = () => {
   const query = useQuery().get('type');
+  const resStatus = useQuery().get('status');
   const { state } = useLocation<FormPengajuanFallbackState>();
 
   let title = 'TERKIRIM!';
@@ -18,18 +19,23 @@ const FallbackPage: React.FC = () => {
     'Terima kasih atas kritik dan sarannya. Kami akanproses dan memperbaiki servis kami.';
   let status;
 
-  if (state.statusCode === 0)
-    status = `sedang dalam <strong>Waiting List</strong>.`;
-  if (state.statusCode === 1) status = `sedang <strong>DIPROSES</strong>.`;
-  if (state.statusCode === 2)
+  if (state?.statusCode === 0)
+    status = `<strong>BELUM DIPROSES</strong>, mohon untuk kembali mengecek status pengajuan anda pada hari berikutnya.`;
+  if (state?.statusCode === 1)
+    status = `sedang <strong>DIPROSES</strong>. Kami akan mengirimkan email pemberitahuan saat pengajuan anda sudah selesai.`;
+  if (state?.statusCode === 2)
     status = `<strong>DITOLAK</strong>. Mohon hubungi kantor desa untuk info lebih lanjut.`;
-  if (state.statusCode === 3)
+  if (state?.statusCode === 3)
     status = `sudah <strong>SELESAI</strong>. Anda perlu membayar 20 ribu untuk mengambil hasilnya dari kantor desa terdekat.`;
 
-  if (query === 'fail') {
+  if (query === 'fail' && resStatus === '404') {
+    title = 'Tidak Ditemukan';
+    details =
+      'Mohon maaf, pengajuan yang anda cari tidak dapat ditemukan. Mohon masukkan kode unik yang valid. Terima kasih.';
+  } else if (query === 'fail') {
     title = 'Gagal';
     details =
-      'Mohon maaf, pengajuan anda gagal. Silahkan mencoba lagi. Terima kasih.';
+      'Mohon maaf, terjadi kesalahan. Silahkan mencoba lagi. Terima kasih.';
   }
 
   if (query === 'form-pengajuan')
@@ -37,6 +43,7 @@ const FallbackPage: React.FC = () => {
 
   if (query === 'status-pengajuan')
     details = `<span class="mb-1" style="font-size: 2rem; display: block;">Kode unik anda adalah <strong>${state?.uniqueCode}</strong></span> Pengajuan data anda ${status} `;
+
   return (
     <>
       <Header />

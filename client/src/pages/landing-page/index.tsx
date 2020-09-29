@@ -84,16 +84,22 @@ const LandingPage = () => {
       `${urlServer}/submission/find?unique_code=${statusPengajuan}`
     );
     let key: string[] = [];
-    // eslint-disable-next-line
-    Object.keys(res.data.data).map((val) => {
-      key.push(val);
-    });
+    let status;
+
+    if (!res) status = '404';
+
+    if (res) {
+      // eslint-disable-next-line
+      Object.keys(res.data.data).map((val) => {
+        key.push(val);
+      });
+    }
     setLoading(isLoading);
-    const { unique_code, status_code } = res.data.data[key[0]];
 
     if (error) {
-      history.push('/fallback?type=fail');
+      history.push(`/fallback?type=fail&status=${status}`);
     } else {
+      const { unique_code, status_code } = res.data.data[key[0]];
       history.push(
         `/fallback?type=status-pengajuan&unique_code=${unique_code}&status_code=${status_code}`,
         {
