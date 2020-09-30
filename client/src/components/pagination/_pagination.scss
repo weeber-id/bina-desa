@@ -16,24 +16,29 @@
   &__prev {
     cursor: pointer;
     color: var(--color-dark-grey);
+    user-select: none;
 
     &:hover {
       color: var((--color-yellow));
     }
   }
 
-  &__numbers {
-    span {
-      cursor: pointer;
-      color: var(--color-dark-grey);
+  &__number {
+    cursor: pointer;
+    color: var(--color-dark-grey);
+    min-width: 2ch;
+    display: inline-block;
 
-      &:hover {
-        color: var((--color-yellow));
-      }
+    &.active {
+      color: var(--color-yellow);
+    }
 
-      &:not(:last-child) {
-        margin-right: 2rem;
-      }
+    &:hover {
+      color: var((--color-yellow));
+    }
+
+    &:not(:last-child) {
+      margin-right: 2rem;
     }
   }
 }
