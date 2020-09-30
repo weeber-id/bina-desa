@@ -11,13 +11,18 @@
     @media only screen and (max-width: 25em) {
       padding: 10rem 3rem;
     }
+
+    .pagination__container {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    gap: 6rem 3rem;
-    padding-bottom: 18rem;
+    gap: 3rem;
+    padding-bottom: 6rem;
   }
 }
 

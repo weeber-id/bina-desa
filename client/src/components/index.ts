@@ -6,6 +6,7 @@ import TextArea from './textarea';
 import Dropdown from './dropdown';
 import Footer from './footer';
 import LoadingMessage from './loading-message';
+import Pagination from './pagination';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   Dropdown,
   Footer,
   LoadingMessage,
+  Pagination,
 };

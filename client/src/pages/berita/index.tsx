@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Header } from '../../components';
+import { Card, Header, Pagination } from '../../components';
 import Footer from '../../components/footer';
 
 const Berita = () => {
@@ -15,6 +15,7 @@ const Berita = () => {
           </section>
           <section className="berita__cards">
             <Card
+              isLoading
               date="15 Desember 2020"
               title="Judul Panjang Banget"
               description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet "
@@ -58,6 +59,9 @@ const Berita = () => {
             <Card date="15 Desember 2020" title="halo" />
             <Card date="15 Desember 2020" title="halo" />
             <Card date="15 Desember 2020" title="halo" />
+          </section>
+          <section className="pagination__container">
+            <Pagination />
           </section>
         </div>
       </main>

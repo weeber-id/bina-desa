@@ -135,6 +135,7 @@ const LandingPage = () => {
                   <label>Cek Status Pengajuan Anda</label>
                   <div className="hero__input-container mb-3">
                     <Input
+                      required
                       placeholder="masukkan kode unik"
                       type="text"
                       bgColor="grey"
@@ -149,7 +150,9 @@ const LandingPage = () => {
                 <p className="paragraph mb-2">
                   Belum terdaftar? Silahkan isi form
                 </p>
-                <Button color="green">Daftar Pengajuan</Button>
+                <Button url="/form" color="green">
+                  Daftar Pengajuan
+                </Button>
               </div>
             </div>
             <div className="hero__icon">

@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Header } from '../../components';
 import Footer from '../../components/footer';
+import { getWidth } from '../../utils/getWidth';
 
 const InfoUmum = () => {
+  const [center, setCenter] = useState<[number, number]>([
+    107.3135685,
+    -6.3472259,
+  ]);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (getWidth() <= 900 && center[1] !== -6.3372259) {
+        setCenter([107.3135685, -6.3372259]);
+      }
+      if (getWidth() >= 900 && center[1] !== -6.3472259) {
+        setCenter([107.3135685, -6.3472259]);
+      }
+    });
+  }, [center]);
+
   const Map = ReactMapboxGl({
     accessToken:
       'pk.eyJ1IjoiYXpoYXJhbGlmYXV6aSIsImEiOiJja2Znb3ZwNmkwMnU1MnRwN2dydDdteGFuIn0.dxecEcLFNbTT4m2V-TQiJw',
@@ -17,7 +34,7 @@ const InfoUmum = () => {
         <div className="info-umum__map-container">
           <Map
             className="info-umum__map"
-            center={[107.3135685, -6.3472259]}
+            center={center}
             zoom={[14.44]}
             containerStyle={{ height: '100%', width: '100%' }}
             // eslint-disable-next-line

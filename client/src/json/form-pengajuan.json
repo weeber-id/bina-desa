@@ -151,7 +151,7 @@
       "placeholder": "Lampiran Pendukung (Opsional)",
       "id": "lampiran-pendukung",
       "name": "lampiran_pendukung",
-      "required": true
+      "required": false
     }
   ]
 ]
