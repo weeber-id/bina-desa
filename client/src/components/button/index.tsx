@@ -44,7 +44,7 @@ const Button: React.FC<Button> = ({
     );
   }
 
-  if (url) {
+  if (url && url?.length > 0) {
     return (
       <Link
         onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>

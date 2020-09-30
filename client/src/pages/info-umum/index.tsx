@@ -11,6 +11,10 @@ const InfoUmum = () => {
   ]);
 
   useEffect(() => {
+    if (getWidth() <= 900) setCenter([107.3135685, -6.3372259]);
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('resize', () => {
       if (getWidth() <= 900 && center[1] !== -6.3372259) {
         setCenter([107.3135685, -6.3372259]);

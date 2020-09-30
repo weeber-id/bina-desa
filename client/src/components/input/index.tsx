@@ -62,8 +62,10 @@ const Input: React.FC<InputProps> = ({
           {fileName ? fileName.name : placeholder}
         </span>
         <input
-          required={required}
+          required={fileName ? false : required}
           onInvalid={() => {
+            console.log('terpanggil');
+
             if (!fileName) {
               setInputFileClassName([...inputFileClassName, 'required']);
             }

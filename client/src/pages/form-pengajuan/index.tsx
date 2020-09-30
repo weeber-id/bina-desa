@@ -19,7 +19,7 @@ type KKState = {
   ktp_suami?: FileList[0];
   ktp_istri?: FileList[0];
   surat_nikah?: FileList[0];
-  akta_kelahiran?: FileList[0];
+  akta_kelahiran_anak?: FileList[0];
 };
 
 type AktaKelahiranState = {
@@ -42,7 +42,7 @@ const FormPengajuan = () => {
     ktp_suami: undefined,
     ktp_istri: undefined,
     surat_nikah: undefined,
-    akta_kelahiran: undefined,
+    akta_kelahiran_anak: undefined,
   });
   const [AktaKelahiranState, setAktaKelahiranState] = useState<
     AktaKelahiranState

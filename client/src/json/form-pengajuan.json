@@ -37,7 +37,7 @@
       "type": "file",
       "placeholder": "Akta Kelahiran Anak (Opsional)",
       "id": "akta-kelahiran",
-      "name": "akta_kelahiran",
+      "name": "akta_kelahiran_anak",
       "required": false
     }
   ],
