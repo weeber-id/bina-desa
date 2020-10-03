@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Pagination = () => {
-  const maxPage = 15;
+interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  maxPage: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  maxPage,
+  currentPage,
+  setCurrentPage,
+}) => {
   const elements = [];
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  maxPage = 8;
 
   for (let i = currentPage; i <= maxPage; i++) {
     const className = ['pagination__number'];
@@ -39,17 +48,32 @@ const Pagination = () => {
   }
 
   if (elements.length < 10) {
-    for (let i = currentPage - 5; elements.length < 10; i--) {
-      if (i > 0)
-        elements.unshift(
-          <span
-            key={`pagination-${i}`}
-            onClick={() => setCurrentPage(i)}
-            className="pagination__number"
-          >
-            {i}
-          </span>
-        );
+    if (maxPage >= 10) {
+      for (let i = currentPage - 5; elements.length < 10; i--) {
+        if (i > 0)
+          elements.unshift(
+            <span
+              key={`pagination-${i}`}
+              onClick={() => setCurrentPage(i)}
+              className="pagination__number"
+            >
+              {i}
+            </span>
+          );
+      }
+    } else {
+      for (let i = currentPage - 5; elements.length < maxPage; i--) {
+        if (i > 0)
+          elements.unshift(
+            <span
+              key={`pagination-${i}`}
+              onClick={() => setCurrentPage(i)}
+              className="pagination__number"
+            >
+              {i}
+            </span>
+          );
+      }
     }
   }
 
