@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../button';
 
 export interface Card extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
@@ -44,7 +45,10 @@ const Card: React.FC<Card> = ({
         <div className="card__details">
           <h3 className="heading-tertiary">{title}</h3>
           <h4 className="card__date">{date}</h4>
-          <p className="paragraph">{description}</p>
+          <div className="card__buttons">
+            <Button>Edit</Button>
+            <Button color="grey">Delete</Button>
+          </div>
         </div>
       </div>
     </Link>

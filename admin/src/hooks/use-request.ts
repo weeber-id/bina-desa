@@ -6,7 +6,10 @@ export const fetchRequest = async (
   let response;
   let isLoading = true;
   try {
-    const res = await fetch(url, opt);
+    const res = await fetch(url, {
+      ...opt,
+      credentials: 'include',
+    });
     response = res;
   } catch (e) {
     error = e;

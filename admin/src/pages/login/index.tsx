@@ -22,7 +22,7 @@ const LoginPage = () => {
     const token = Cookies.get('admin_token');
 
     if (token) history.replace('/pengajuan');
-  }, []);
+  }, [history]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,10 +53,10 @@ const LoginPage = () => {
     else if (response?.status === 401)
       alert('Maaf, Username atau password yang anda masukkan salah.');
     else {
-      if (process.env.NODE_ENV === 'development') {
-        const token = (await response?.json()).data.access_token;
-        Cookies.set('admin_token', token);
-      }
+      // if (process.env.NODE_ENV === 'development') {
+      //   const token = (await response?.json()).data.access_token;
+      //   Cookies.set('admin_token', token);
+      // }
       history.replace('/pengajuan');
     }
   };

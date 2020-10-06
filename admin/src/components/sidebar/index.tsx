@@ -1,7 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import { fetchRequest } from '../../hooks/use-request';
+import { urlServer } from '../../utils/urlServer';
 
 const Sidebar = () => {
+  const history = useHistory();
+  const handleLogout = async () => {
+    await fetchRequest(`${urlServer}/logout`, { method: 'POST' });
+    history.replace('/');
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__lists">
@@ -27,7 +35,9 @@ const Sidebar = () => {
           <div className="sidebar__list">Berita</div>
         </NavLink>
       </div>
-      <div className="sidebar__logout">Logout</div>
+      <div onClick={handleLogout} className="sidebar__logout">
+        Logout
+      </div>
     </div>
   );
 };
