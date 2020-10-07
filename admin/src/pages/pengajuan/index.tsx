@@ -11,13 +11,15 @@ import {
 import { fetchRequest } from '../../hooks/use-request';
 import { urlServer } from '../../utils/urlServer';
 
-type DataPengajuan = {
+export type DataPengajuan = {
   email: string;
   id: string;
   nama_kepala_keluarga: string;
   status_code: number;
   kategori: string;
   unique_code: string;
+  created_at: string;
+  file: { [key: string]: string };
 };
 
 const Pengajuan = () => {
@@ -48,7 +50,7 @@ const Pengajuan = () => {
 
           const d = res.data?.map((data: DataPengajuan) => {
             if (i === 0) data.kategori = 'Kartu Keluarga';
-            else if (i === 1) data.kategori = 'Akta Keluarga';
+            else if (i === 1) data.kategori = 'Akta Kelahiran';
             else data.kategori = 'Surat Keterangan';
 
             return data;
@@ -56,8 +58,22 @@ const Pengajuan = () => {
           if (d) pengajuan = pengajuan.concat(d);
         }
 
+        const sortedPengajuan = pengajuan.sort((a, b) => {
+          const dateA = new Date(a.created_at);
+          const dateB = new Date(b.created_at);
+
+          if (dateA > dateB) {
+            return -1;
+          }
+          if (dateB < dateA) {
+            return 1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+
         setLoading(false);
-        setDataPengajuan(pengajuan);
+        setDataPengajuan(sortedPengajuan);
       });
     })();
   }, []);
@@ -82,17 +98,36 @@ const Pengajuan = () => {
 
   const handleSubmit = async () => {
     const body = JSON.stringify({
-      statusCode: statusCode,
+      status: `${statusCode}`,
     });
 
-    await fetchRequest(
-      `${urlServer}/admin/submission/${kategori}?unique_code=${edit}`,
+    const { error } = await fetchRequest(
+      `${urlServer}/admin/submission/${kategori}/update?unique_code=${edit}`,
       {
-        method: 'PATCH',
+        method: 'POST',
         body,
       }
     );
-    // window.location.reload();
+
+    if (!error) window.location.reload();
+  };
+
+  const handleSort = (val: string) => {
+    let sortedDataPengajuan: DataPengajuan[] = JSON.parse(
+      JSON.stringify(dataPengajuan)
+    );
+
+    let j = 0;
+    for (let i = 0; i < sortedDataPengajuan.length; i++) {
+      if (sortedDataPengajuan[i].kategori === val) {
+        sortedDataPengajuan.splice(j, 0, sortedDataPengajuan[i]);
+        sortedDataPengajuan.splice(i + 1, 1);
+
+        j++;
+      }
+    }
+
+    setDataPengajuan(sortedDataPengajuan);
   };
 
   return (
@@ -106,8 +141,13 @@ const Pengajuan = () => {
               <h3 className="heading-tertiary">Data Pengajuan</h3>
               <Dropdown
                 style={{ minWidth: '25rem' }}
-                options={['Akta Kelahiran']}
+                options={[
+                  'Akta Kelahiran',
+                  'Kartu Keluarga',
+                  'Surat Pengajuan',
+                ]}
                 placeholder="Sort by"
+                onChangeOptions={handleSort}
               />
             </div>
             <div className="table__head">

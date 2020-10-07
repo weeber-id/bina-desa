@@ -10,7 +10,11 @@ export const fetchRequest = async (
       ...opt,
       credentials: 'include',
     });
-    response = res;
+
+    if (res.status === 400) error = 'Bad Request';
+    else if (res.status === 401)
+      error = 'Anda harus login untuk melakukan task ini.';
+    else response = res;
   } catch (e) {
     error = e;
   }
