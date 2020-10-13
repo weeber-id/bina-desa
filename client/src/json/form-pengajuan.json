@@ -8,6 +8,12 @@
     },
     {
       "type": "text",
+      "placeholder": "Nama Pengaju",
+      "name": "nama",
+      "required": true
+    },
+    {
+      "type": "text",
       "placeholder": "Email",
       "name": "email",
       "required": true
@@ -46,6 +52,12 @@
       "type": "text",
       "placeholder": "Nama Kepala Keluarga",
       "name": "nama_kepala_keluarga",
+      "required": true
+    },
+    {
+      "type": "text",
+      "placeholder": "Nama Pengaju",
+      "name": "nama",
       "required": true
     },
     {
@@ -128,7 +140,7 @@
     },
     {
       "type": "text",
-      "placeholder": "Nama Pengusul",
+      "placeholder": "Nama Pengaju",
       "name": "nama",
       "required": true
     },
