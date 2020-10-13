@@ -5,11 +5,13 @@
   background-color: var(--color-green);
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  height: 50rem;
 
   @media only screen and (max-width: 39.25em) {
     display: grid;
     grid-template-columns: 2fr 3fr;
     border-radius: 1.5rem;
+    height: 17.3rem;
   }
 
   @media not all and (hover: none) {
@@ -68,6 +70,38 @@
       font-size: 1.4rem;
       color: var(--color-grey);
 
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a {
+        font-size: 1.4rem !important;
+        font-weight: 400 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--color-grey) !important;
+        text-decoration: none;
+      }
+
+      img {
+        display: none !important;
+      }
+
+      li,
+      ul {
+        text-decoration: none !important;
+        list-style: none !important;
+        font-weight: 400 !important;
+      }
+
+      li {
+        margin-left: -4.2rem;
+        font-size: 1.4rem !important;
+      }
+
       @media only screen and (max-width: 39.25em) {
         font-size: 1.2rem;
       }
@@ -90,7 +124,7 @@
   box-shadow: 0 4px 8px rgba(black, 0.25);
   border-radius: 3rem;
   overflow: hidden;
-  background-color: var(--color-grey);
+  background-color: var(--color-white);
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 
@@ -103,8 +137,7 @@
   &__img-container {
     height: 25rem;
     overflow: hidden;
-    background-color: var(--color-grey-2);
-    animation: colorTransition 3s infinite reverse;
+    animation: colorTransition 3s infinite;
 
     @media only screen and (max-width: 39.25em) {
       height: 100%;
@@ -124,7 +157,6 @@
 
   &__title {
     height: 1.8rem;
-    background-color: var(--color-grey-2);
     width: 20rem;
     margin-bottom: 2rem;
     animation: colorTransition 3s infinite reverse;
@@ -132,7 +164,6 @@
 
   &__date {
     height: 1.4rem;
-    background-color: var(--color-grey-2);
     width: 10rem;
     margin-bottom: 2rem;
     animation: colorTransition 3s infinite reverse;

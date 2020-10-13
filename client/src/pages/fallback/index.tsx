@@ -7,6 +7,7 @@ import { useQuery } from '../../hooks/use-query';
 type FormPengajuanFallbackState = {
   uniqueCode?: string;
   statusCode?: 0 | 1 | 2 | 3;
+  is_paid?: boolean;
 };
 
 const FallbackPage: React.FC = () => {
@@ -45,10 +46,21 @@ const FallbackPage: React.FC = () => {
   }
 
   if (query === 'form-pengajuan')
-    details = `<span class="mb-1" style="font-size: 2rem; display: block;">Kode unik anda adalah <strong>${state?.uniqueCode}</strong></span> Kode unik ini dapat anda gunakan untuk mengecek status pengajuan di halaman <a style="color: var(--color-black); font-weight: 700;" href='/' >beranda</a>. Jika sudah selesai, maka anda dapat mengambilnya di kantor Desa Telukjambe serta membayar biaya sebesar <strong>Rp. 20.000;</strong>`;
+    details = `<span class="mb-1" style="font-size: 2rem; display: block;">Kode unik anda adalah <strong>${
+      state?.uniqueCode
+    }</strong></span> Kode unik ini dapat anda gunakan untuk mengecek status pengajuan di halaman <a style="color: var(--color-black); font-weight: 700;" href='/' >beranda</a>. Jika sudah selesai, maka anda dapat mengambilnya di kantor Desa Telukjambe serta membayar biaya sebesar <strong>Rp. ${
+      state.is_paid ? '20.000;' : '0;'
+    }</strong>`;
 
   if (query === 'status-pengajuan')
     details = `<span class="mb-1" style="font-size: 2rem; display: block;">Kode unik anda adalah <strong>${state?.uniqueCode}</strong></span> Pengajuan data anda ${status} `;
+
+  if (query === 'not-found') {
+    details =
+      'Halaman yang Anda maksud, tidak dapat ditemukan. Kembali ke <a style="color: var(--color-black); font-weight: 700;" href="/">Beranda</>';
+
+    title = '404 Not Found';
+  }
 
   return (
     <>

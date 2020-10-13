@@ -34,6 +34,17 @@ type AktaKelahiranState = {
   surat_kelahiran?: FileList[0];
 };
 
+type SuratKeteranganState = {
+  [key: string]: any;
+  email?: string;
+  nama_kepala_keluarga?: string;
+  tipe?: string;
+  nama?: string;
+  surat_pernyataan?: FileList[0];
+  ktp?: FileList[0];
+  lampiran_pendukung?: FileList[0];
+};
+
 const FormPengajuan = () => {
   const [indexFormPengajuan, setIndexFormPengajuan] = useState<number>(-1);
   const [KKState, setKKState] = useState<KKState>({
@@ -56,6 +67,17 @@ const FormPengajuan = () => {
     surat_kelahiran: undefined,
     surat_nikah: undefined,
   });
+  const [SuratKeteranganState, setSuratKeteranganState] = useState<
+    SuratKeteranganState
+  >({
+    email: '',
+    nama: '',
+    tipe: '',
+    nama_kepala_keluarga: '',
+    ktp: undefined,
+    lampiran_pendukung: undefined,
+    surat_pernyataan: undefined,
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const history = useHistory();
 
@@ -71,6 +93,7 @@ const FormPengajuan = () => {
     if (
       name !== 'email' &&
       name !== 'nama_kepala_keluarga' &&
+      name !== 'name' &&
       files &&
       files?.length > 0
     ) {
@@ -82,6 +105,11 @@ const FormPengajuan = () => {
       } else if (indexFormPengajuan === 1) {
         setAktaKelahiranState({
           ...AktaKelahiranState,
+          [name]: files[0],
+        });
+      } else if (indexFormPengajuan === 2) {
+        setSuratKeteranganState({
+          ...SuratKeteranganState,
           [name]: files[0],
         });
       }
@@ -96,8 +124,20 @@ const FormPengajuan = () => {
           ...AktaKelahiranState,
           [name]: value,
         });
+      } else if (indexFormPengajuan === 2) {
+        setSuratKeteranganState({
+          ...SuratKeteranganState,
+          [name]: value,
+        });
       }
     }
+  };
+
+  const handleChangeFormDropdown = (val: string, name: string) => {
+    setSuratKeteranganState({
+      ...SuratKeteranganState,
+      [name]: val,
+    });
   };
 
   const handleCancel = (name: string) => {
@@ -121,6 +161,7 @@ const FormPengajuan = () => {
     let ObjMapped;
     if (indexFormPengajuan === 0) ObjMapped = KKState;
     else if (indexFormPengajuan === 1) ObjMapped = AktaKelahiranState;
+    else if (indexFormPengajuan === 2) ObjMapped = SuratKeteranganState;
     ObjMapped &&
       // eslint-disable-next-line
       Object.keys(ObjMapped).map((key: string) => {
@@ -128,6 +169,8 @@ const FormPengajuan = () => {
           formdata.append(key, KKState[key]);
         } else if (indexFormPengajuan === 1) {
           formdata.append(key, AktaKelahiranState[key]);
+        } else if (indexFormPengajuan === 2) {
+          formdata.append(key, SuratKeteranganState[key]);
         }
       });
     let urlRequest = '';
@@ -135,6 +178,8 @@ const FormPengajuan = () => {
       urlRequest = `${urlServer}/submission/kartu-keluarga`;
     } else if (indexFormPengajuan === 1) {
       urlRequest = `${urlServer}/submission/akta-kelahiran`;
+    } else if (indexFormPengajuan === 2) {
+      urlRequest = `${urlServer}/submission/surat-keterangan`;
     }
     const { error, res, isLoading } = await fetchRequest(
       'formdata',
@@ -145,12 +190,18 @@ const FormPengajuan = () => {
 
     if (error) {
       history.push('/fallback?type=fail');
-    } else if (/required/gi.test(res)) {
+    } else if (/required/gi.test(res.error)) {
       history.push('/fallback?type=bad-request');
     } else {
-      history.push('/fallback?type=form-pengajuan', {
+      const historyState = {
         uniqueCode: res.data.unique_code,
-      });
+        is_paid: true,
+      };
+
+      if (res.data.is_paid === undefined) historyState['is_paid'] = true;
+      else historyState['is_paid'] = res.data.is_paid;
+
+      history.push('/fallback?type=form-pengajuan', historyState);
     }
   };
 
@@ -178,13 +229,23 @@ const FormPengajuan = () => {
               ? FormPengajuanData[indexFormPengajuan].map(
                   ({ type, options, name, id, required, ...otherProps }, i) => {
                     if (type === 'dropdown' && options) {
-                      return <Dropdown {...otherProps} options={options} />;
+                      return (
+                        <Dropdown
+                          {...otherProps}
+                          options={options}
+                          onChangeOptions={(val) =>
+                            handleChangeFormDropdown(val, name)
+                          }
+                        />
+                      );
                     }
                     let value;
                     if (indexFormPengajuan === 0) {
                       value = KKState[name];
                     } else if (indexFormPengajuan === 1) {
                       value = AktaKelahiranState[name];
+                    } else if (indexFormPengajuan === 2) {
+                      value = SuratKeteranganState[name];
                     }
 
                     return (

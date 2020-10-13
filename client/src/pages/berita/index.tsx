@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import edjsHtml from '../../utils/editorjs-to-html';
 import { Card, Header, Pagination } from '../../components';
 import Footer from '../../components/footer';
 import { fetchRequest } from '../../hooks/use-request';
 import { urlServer } from '../../utils/urlServer';
 
-type News = {
+export type News = {
   author: string;
   content: string;
   created_at: string;
@@ -12,20 +13,26 @@ type News = {
   image_cover: string;
   title: string;
   slug: string;
+  id: string;
 };
 
 const Berita = () => {
   const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(1);
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const { isLoading, res } = await fetchRequest(
         'get',
-        `${urlServer}/news?page=${1}&content_per_page=12`
+        `${urlServer}/news?page=${currentPage}&content_per_page=12`
       );
 
-      if (!isLoading) setNews(res.data.data);
+      if (!isLoading) {
+        setNews(res.data.data);
+        setMaxPage(res.data.max_page);
+      }
 
       setLoading(isLoading);
     })();
@@ -43,7 +50,7 @@ const Berita = () => {
           </section>
           <section className="berita__cards">
             {loading
-              ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((val) => (
+              ? [1, 2, 3, 4].map((val) => (
                   <Card key={`card-loading-${val}`} isLoading />
                 ))
               : news.map((val) => {
@@ -53,6 +60,10 @@ const Berita = () => {
                     year: 'numeric',
                     day: 'numeric',
                   }).format(date);
+
+                  const parsedContent = edjsHtml()
+                    .parse(JSON.parse(val.content))
+                    .join(' ');
                   return (
                     <Card
                       key={val.slug}
@@ -60,8 +71,8 @@ const Berita = () => {
                       img={val.image_cover}
                       date={formattedDate}
                       alt={val.title}
-                      description={val.content}
-                      url={val.slug.split('+').join('-')}
+                      description={parsedContent}
+                      url={val.slug + `?id=${val.id}`}
                     />
                   );
                 })}
@@ -70,7 +81,8 @@ const Berita = () => {
             <Pagination
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
-              maxPage={1}
+              maxPage={maxPage}
+              isDisabled={loading}
             />
           </section>
         </div>

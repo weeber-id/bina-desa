@@ -44,7 +44,10 @@ const Card: React.FC<Card> = ({
         <div className="card__details">
           <h3 className="heading-tertiary">{title}</h3>
           <h4 className="card__date">{date}</h4>
-          <p className="paragraph">{description}</p>
+          <p
+            className="paragraph"
+            dangerouslySetInnerHTML={{ __html: description ? description : '' }}
+          ></p>
         </div>
       </div>
     </Link>

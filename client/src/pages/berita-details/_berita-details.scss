@@ -1,22 +1,30 @@
 .berita-details {
   &__container {
-    padding: 20rem 10rem 10rem 10rem;
+    padding: 14rem 10rem 0rem 10rem;
 
     @media only screen and (max-width: 56.25em) {
-      padding: 10rem 5rem;
+      padding: 10rem 5rem 0rem 5rem;
     }
 
     @media only screen and (max-width: 25em) {
-      padding: 10rem 3rem;
+      padding: 10rem 3rem 0rem 3rem;
     }
 
     .heading-primary {
-      color: var(--color-green);
+      line-height: 1.2;
     }
   }
 
   &__date {
     color: var(--color-grey-2);
+    font-weight: 400;
+  }
+
+  &__more-container {
+    padding: 0 5rem;
+    @media only screen and (max-width: 25em) {
+      padding: 0 3rem;
+    }
   }
 
   &__more {

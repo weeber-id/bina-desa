@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  type: 'radio' | 'file' | 'text' | 'password';
+  type: 'radio' | 'file' | 'text' | 'password' | 'number';
   bgColor?: 'white' | 'grey';
   fileName?: FileList[0];
   onCancel?(): void;
@@ -100,7 +100,7 @@ const Input: React.FC<InputProps> = ({
       <input
         {...otherProps}
         className={inputClassName.join(' ')}
-        type="text"
+        type={type}
         value={value}
         placeholder={placeholder}
         required={required}

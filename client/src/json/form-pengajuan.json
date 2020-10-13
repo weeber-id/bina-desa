@@ -123,27 +123,27 @@
         "Keringanan Pembiayaan Kendaraan Bermotor",
         "Salah Nama"
       ],
-      "name": "kategori",
+      "name": "tipe",
       "required": true
     },
     {
       "type": "text",
       "placeholder": "Nama Pengusul",
-      "name": "nama_pengusul",
+      "name": "nama",
       "required": true
     },
     {
       "type": "file",
       "placeholder": "Surat Pernyataan Pribadi",
       "id": "surat-pernyataan-pribadi",
-      "name": "surat_pernyataan_pribadi",
+      "name": "surat_pernyataan",
       "required": true
     },
     {
       "type": "file",
       "placeholder": "Scan KTP Asli",
       "id": "scan-ktp-asli",
-      "name": "scan_ktp_asli",
+      "name": "ktp",
       "required": true
     },
     {
@@ -151,7 +151,7 @@
       "placeholder": "Lampiran Pendukung (Opsional)",
       "id": "lampiran-pendukung",
       "name": "lampiran_pendukung",
-      "required": false
+      "required": true
     }
   ]
 ]

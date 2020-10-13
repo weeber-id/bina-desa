@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+.max-width-900 {
+  max-width: 102.4rem;
+  margin: 0 auto;
+}
+
 .co-green {
   color: var(--color-green);
 }
@@ -25,4 +30,8 @@
 
 .mb-5 {
   margin-bottom: 5rem;
+}
+
+.skeleton-bar {
+  animation: colorTransition 3s infinite;
 }

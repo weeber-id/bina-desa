@@ -178,6 +178,7 @@ const LandingPage = () => {
                 placeholder="Nama"
                 onChange={handleChangeFormPengaduan}
                 required
+                autoComplete="off"
               />
               <TextArea
                 name="address"
@@ -190,17 +191,19 @@ const LandingPage = () => {
                 onChange={handleChangeFormPengaduan}
                 name="rt"
                 className="rt"
-                type="text"
+                type="number"
                 placeholder="RT"
                 required
+                autoComplete="off"
               />
               <Input
                 onChange={handleChangeFormPengaduan}
                 name="rw"
                 className="rw"
-                type="text"
+                type="number"
                 placeholder="RW"
                 required
+                autoComplete="off"
               />
               <TextArea
                 name="complaint"
