@@ -37,7 +37,9 @@ const Pagination: React.FC<PaginationProps> = ({
         elements.unshift(
           <span
             key={`pagination-${i}`}
-            onClick={() => setCurrentPage(i)}
+            onClick={() => {
+              if (!isDisabled) setCurrentPage(i);
+            }}
             className="pagination__number"
           >
             {i}
@@ -57,7 +59,9 @@ const Pagination: React.FC<PaginationProps> = ({
           elements.unshift(
             <span
               key={`pagination-${i}`}
-              onClick={() => setCurrentPage(i)}
+              onClick={() => {
+                if (!isDisabled) setCurrentPage(i);
+              }}
               className="pagination__number"
             >
               {i}
@@ -70,7 +74,9 @@ const Pagination: React.FC<PaginationProps> = ({
           elements.unshift(
             <span
               key={`pagination-${i}`}
-              onClick={() => setCurrentPage(i)}
+              onClick={() => {
+                if (!isDisabled) setCurrentPage(i);
+              }}
               className="pagination__number"
             >
               {i}
