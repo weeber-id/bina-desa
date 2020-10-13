@@ -6,11 +6,13 @@ import { fetchRequest } from '../../hooks/use-request';
 import { urlServer } from '../../utils/urlServer';
 import { useHistory } from 'react-router-dom';
 import { News } from '../berita';
+import { Helmet } from 'react-helmet';
 
 const BeritaDetails = () => {
   const [content, setContent] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [date, setDate] = useState<string>('');
+  const [metaDate, setMetaDate] = useState<string>('');
   const [imageCover, setImageCover] = useState<string>('');
   const [moreNews, setMoreNews] = useState<News[]>([]);
   const id = useQuery().get('id');
@@ -51,6 +53,7 @@ const BeritaDetails = () => {
         }
 
         setDate(date);
+        setMetaDate(res.data.data.created_at);
         setImageCover(res.data.data.image_cover);
         const edjsParser = edjsHtml();
         const parsedContent = edjsParser.parse(
@@ -76,6 +79,19 @@ const BeritaDetails = () => {
 
   return (
     <>
+      <Helmet>
+        <meta property="article:published_time" content={metaDate} />
+        <title>{title}</title>
+        <meta property="og:sitename" content="Teluk Jambe" />
+        <meta property="og:type" content="article" />
+        <meta name="title" content={title} />
+        <meta name="og:title" content={title} />
+        <meta
+          property="og:image"
+          content={imageCover}
+          data-react-helmet="true"
+        />
+      </Helmet>
       <Header />
       <main className="berita-details">
         <div className="berita-details__container max-width-900">

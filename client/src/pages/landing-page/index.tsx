@@ -100,12 +100,20 @@ const LandingPage = () => {
       history.push(`/fallback?type=fail&status=${status}`);
     } else {
       const { unique_code, status_code } = res.data.data[key[0]];
+
+      const d = {
+        uniqueCode: unique_code,
+        statusCode: status_code,
+        is_paid: true,
+      };
+
+      if (res.data.data[key[0]]['is_paid'] !== undefined) {
+        d['is_paid'] = res.data.data[key[0]]['is_paid'];
+      }
+
       history.push(
         `/fallback?type=status-pengajuan&unique_code=${unique_code}&status_code=${status_code}`,
-        {
-          uniqueCode: unique_code,
-          statusCode: status_code,
-        }
+        d
       );
     }
   };

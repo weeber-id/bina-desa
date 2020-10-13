@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { IconSuccessMessage } from '../../assets';
+import { IconCaution, IconSuccessMessage } from '../../assets';
 import { Footer, Header } from '../../components';
 import { useQuery } from '../../hooks/use-query';
 
@@ -27,7 +27,9 @@ const FallbackPage: React.FC = () => {
   if (state?.statusCode === 2)
     status = `<strong>DITOLAK</strong>. Mohon hubungi kantor desa untuk info lebih lanjut.`;
   if (state?.statusCode === 3)
-    status = `sudah <strong>SELESAI</strong>. Anda perlu membayar 20 ribu untuk mengambil hasilnya dari kantor desa terdekat.`;
+    status = `sudah <strong>SELESAI</strong>. Anda perlu membayar <strong>${
+      state.is_paid ? '20 ribu' : '0'
+    } rupiah</strong> untuk mengambil hasilnya dari kantor desa terdekat.`;
 
   if (query === 'fail' && resStatus === '404') {
     title = 'Tidak Ditemukan';
@@ -57,7 +59,7 @@ const FallbackPage: React.FC = () => {
 
   if (query === 'not-found') {
     details =
-      'Halaman yang Anda maksud, tidak dapat ditemukan. Kembali ke <a style="color: var(--color-black); font-weight: 700;" href="/">Beranda</>';
+      'Halaman yang Anda maksud, tidak dapat ditemukan. Kembali ke <a style="color: var(--color-black); font-weight: 700;" href="/">Beranda</a>';
 
     title = '404 Not Found';
   }
@@ -67,8 +69,12 @@ const FallbackPage: React.FC = () => {
       <Header />
       <main className="fallback">
         <div className="fallback__message">
-          <IconSuccessMessage />
-          <div className="fallback__title mb-1">{title}</div>
+          {query === 'status-pengajuan' ? null : (
+            <>
+              {query === 'not-found' ? <IconCaution /> : <IconSuccessMessage />}
+              <div className="fallback__title mb-1">{title}</div>
+            </>
+          )}
           <div
             dangerouslySetInnerHTML={{ __html: details ? details : '' }}
             className="fallback__details"

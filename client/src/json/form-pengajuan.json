@@ -160,7 +160,7 @@
     },
     {
       "type": "file",
-      "placeholder": "Lampiran Pendukung (Opsional)",
+      "placeholder": "Lampiran Pendukung",
       "id": "lampiran-pendukung",
       "name": "lampiran_pendukung",
       "required": true
