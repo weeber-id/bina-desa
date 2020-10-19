@@ -55,7 +55,7 @@ const InfoUmum = () => {
             kini menjadi sebuah pusat pemerintahan dari Kecamatan Teluk Jambe
             Timur. <br />
             <br />
-            Desa Teluk Jamber memiliki beberapa potensi wisata, salah satunya
+            Desa Teluk Jambe memiliki beberapa potensi wisata, salah satunya
             adalah Danau Bintang Alam. Danau Bintang Alam berada di dalam
             Perumahan Bintang Alam, Desa Teluk Jambe, Kecamatan Teluk Jambe
             Timur, Kabupaten Karawang. Lokasi danau ini cukup strategis, karena
