@@ -25,7 +25,9 @@ jobs:
 
       - run:
           name: Run Test Docker Container
-          command: docker run -d --rm $IMAGE_NAME
+          command: | 
+            source $BASH_ENV
+            docker run -d --rm $IMAGE_NAME
 
       - run:
           name: Check Docker Container
