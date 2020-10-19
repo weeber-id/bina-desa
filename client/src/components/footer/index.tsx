@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="max-width-1200 footer__container">
         <div className="footer__desa">
-          <div className="footer__nama-desa">Desa TelukJambe</div>
+          <div className="footer__nama-desa">Desa Teluk Jambe</div>
           <div className="footer__alamat">
-            Jl. Sukagalih, Telukjambe, Kec. Telukjambe Tim., Kabupaten Karawang,{' '}
-            <br />
+            Jl. Sukagalih, Teluk Jambe, Kec. Teluk Jambe Tim., Kabupaten
+            Karawang, <br />
             Jawa Barat 41361
           </div>
         </div>

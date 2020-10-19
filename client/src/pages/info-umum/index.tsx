@@ -46,20 +46,20 @@ const InfoUmum = () => {
           ></Map>
         </div>
         <div className="info-umum__details">
-          <h1 className="heading-primary mb-3">Desa Telukjambe</h1>
+          <h1 className="heading-primary mb-3">Desa Teluk Jambe</h1>
           <p className="paragraph">
-            Desa Telukjambe merupakan desa yang terletak di Kecamatan Telukjambe
-            Timur, Kabupaten Karawang. Didirikan sejak tahun 1624 dengan nama
-            Desa Wariginpitu, desa yang awalnya menjadi Langkah awal dari usaha
-            Kesultanan Mataram untuk meredam pengaruh Kesultanan Banten, kini
-            menjadi sebuah pusat pemerintahan dari Kecamatan Teluk Jambe Timur.{' '}
+            Desa Teluk Jambe merupakan desa yang terletak di Kecamatan Teluk
+            Jambe Timur, Kabupaten Karawang. Didirikan sejak tahun 1624 dengan
+            nama Desa Wariginpitu, desa yang awalnya menjadi Langkah awal dari
+            usaha Kesultanan Mataram untuk meredam pengaruh Kesultanan Banten,
+            kini menjadi sebuah pusat pemerintahan dari Kecamatan Teluk Jambe
+            Timur. <br />
             <br />
-            <br />
-            Desa Telukjamber memiliki beberapa potensi wisata, salah satunya
+            Desa Teluk Jamber memiliki beberapa potensi wisata, salah satunya
             adalah Danau Bintang Alam. Danau Bintang Alam berada di dalam
-            Perumahan Bintang Alam, Desa Telukjambe, Kecamatan Telukjambe Timur,
-            Kabupaten Karawang. Lokasi danau ini cukup strategis, karena bisa
-            diakses dari berbagai daerah khususnya Perumahan Galuh Mas dan
+            Perumahan Bintang Alam, Desa Teluk Jambe, Kecamatan Teluk Jambe
+            Timur, Kabupaten Karawang. Lokasi danau ini cukup strategis, karena
+            bisa diakses dari berbagai daerah khususnya Perumahan Galuh Mas dan
             Adiarsa. Luas lahan Danau Bintang Alam Sekitar 3,8 Ha dan
             kedalamannya sekitar 40-60 m. Dahulu Danau Bintang Alam ialah danau
             bekas penggalian pasir yang digunakan pada tahun 1980.

@@ -133,10 +133,10 @@ const LandingPage = () => {
                 <span className="co-green">Desa Teluk Jambe</span>
               </h1>
               <p className="paragraph mb-3">
-                Website ini merupakan tempat pelayanan warga Desa Telukjambe
+                Website ini merupakan tempat pelayanan warga Desa Teluk Jambe
                 perilah pengajuan KK, Akta Kelahiran, serta Surat Keterangan
                 (SK) desa. Selain itu, anda juga dapat mengetahui info-info
-                terbaru mengenai Desa Telukjambe.
+                terbaru mengenai Desa Teluk Jambe.
               </p>
               <div className="hero__cek-status">
                 <form onSubmit={handleSubmitCekStatusPengajuan}>
@@ -170,10 +170,10 @@ const LandingPage = () => {
           <section className="pengaduan">
             <h2 className="heading-secondary mb-3">Kanal Pengaduan</h2>
             <p className="paragraph">
-              Isian di bawah ini merupakan tempat bagi warga Desa Telukjambe,
-              untuk menyampaikan keluhan-keluhan terkait keadaan Desa
-              Telukjambe. Kami akan dengan senang hati mendengarkan dan
-              menangani keluhan mengenai desa dari anda.
+              Isian di bawah ini merupakan tempat bagi warga Desa Teluk Jambe,
+              untuk menyampaikan keluhan-keluhan terkait keadaan Desa Teluk
+              Jambe. Kami akan dengan senang hati mendengarkan dan menangani
+              keluhan mengenai desa dari anda.
             </p>
             <form
               onSubmit={handleSubmitFormPengaduan}
