@@ -134,7 +134,7 @@ const LandingPage = () => {
               </h1>
               <p className="paragraph mb-3">
                 Website ini merupakan tempat pelayanan warga Desa Teluk Jambe
-                perilah pengajuan KK, Akta Kelahiran, serta Surat Keterangan
+                perihal pengajuan KK, Akta Kelahiran, serta Surat Keterangan
                 (SK) desa. Selain itu, anda juga dapat mengetahui info-info
                 terbaru mengenai Desa Teluk Jambe.
               </p>
@@ -241,7 +241,7 @@ const LandingPage = () => {
                   className="sponsor__logo sponsor__logo--vokasi"
                 />
                 <p className="sponsor__name">
-                  Departemen Sosial Masyarakat dan Lingkungan BEM Voaksi UI 2020
+                  Departemen Sosial Masyarakat dan Lingkungan BEM Vokasi UI 2020
                 </p>
               </div>
               <div className="sponsor__organization">
