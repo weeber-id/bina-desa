@@ -151,6 +151,11 @@ const FormPengajuan = () => {
         ...AktaKelahiranState,
         [name]: undefined,
       });
+    } else if (indexFormPengajuan === 2) {
+      setSuratKeteranganState({
+        ...SuratKeteranganState,
+        [name]: undefined,
+      });
     }
   };
 
